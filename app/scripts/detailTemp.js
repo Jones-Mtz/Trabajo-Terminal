@@ -24,7 +24,13 @@ var data = {
         }
     ]
 };
+
+var options = {
+    responsive:true
+};
 // Get context with jQuery - using jQuery's .get() method.
 var ctx = $("#chartTemperatura").get(0).getContext("2d");
+var ctx2 = $("#chartActuadores").get(0).getContext("2d");
 // This will get the first returned node in the jQuery collection.
 var myLineChart = new Chart(ctx).Line(data, options);
+var myBarChart = new Chart(ctx2).Bar(data, options);
