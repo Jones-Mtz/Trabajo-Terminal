@@ -4,7 +4,8 @@
   "dependencies": {
     "bootstrap-sass": "~3.3.5",
     "modernizr": "~2.8.3",
-    "chartjs": "~1.0.2"
+    "chartjs": "~1.0.2",
+    "knockout": "~3.3.0"
   },
   "overrides": {
     "bootstrap-sass": {
