@@ -109,7 +109,7 @@
                     
                     <!-- Graficas -->
                     <div class="col-lg-6">
-                        <canvas id="chartTemperatura" width="100" height="30"></canvas>
+                        <canvas id="chartRealTime" width="400" height="400"></canvas>
                     </div>
                     <!-- End Graficas -->
                     
@@ -150,6 +150,8 @@
     
 
     <!-- build:js scripts/main.js -->
+    <script src='scripts/rt_components/knockout-3.2.0.js'></script>
+    <script src='scripts/rt_components/socket.io-1.2.0.js'></script>
     <script src="scripts/realTimeTem.js"></script>
     <!-- endbuild -->
 

@@ -27,13 +27,13 @@ function MainViewModel(data) {
 		var options = {
 			animation : false,
 			scaleOverride : true,
-			scaleSteps : 10,//Number - The number of steps in a hard coded scale
+			scaleSteps : 1,//Number - The number of steps in a hard coded scale
 			scaleStepWidth : 10,//Number - The value jump in the hard coded scale				
-			scaleStartValue : 10//Number - The scale starting value
+			scaleStartValue : 50//Number - The scale starting value
 		};
 		
-		var ctx = $("#canvas").get(0).getContext("2d");
-		var myLine = new Chart(ctx).Line( vm.lineChartData(), options );
+		var ctrt = $("#chartRealTime").get(0).getContext("2d");
+		var myLine = new Chart(ctrt).Line( vm.lineChartData(), options );
 	}
 	
 }
