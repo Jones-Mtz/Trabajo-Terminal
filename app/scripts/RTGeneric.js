@@ -1,8 +1,9 @@
 console.log('Real Time');
+var vm;
 function MainViewModel(data) {
 	var self = this;
-	var robot = io('http://127.0.0.1:3000/api/robots/chappie');
-	
+	var robot = io('http://189.225.236.83:3000/api/robots/chappie');
+	var intervalo;
 	self.lineChartData = ko.observable({
 		labels : ["","","","Gen","","","ºC", ""],
 		datasets : [
@@ -15,10 +16,18 @@ function MainViewModel(data) {
 			}
 		]
 	});
+
+	self.initTR = function(){
+		self.invarvalo = setInterval(function() {
+			console.log("teoircamenre un tr")
+	        robot.emit('checkGeneric');
+	    }, 100);
+	};
+
+	self.stopTR = function(){
+		clearInterval(self.invarvalo);
+	};
 	
-	setInterval(function() {
-        robot.emit('checkGeneric');
-    }, 100);
 
 	robot.on('genericValue', function(analogValue){
 		// console.log(analogValue);
@@ -27,7 +36,7 @@ function MainViewModel(data) {
 		self.lineChartData().datasets[0].data.shift();
 		self.lineChartData().datasets[0].data.push(generic);
 		
-		self.initLine();
+		// self.initLine();
 	});
 	
 	self.initLine = function() {
@@ -40,11 +49,23 @@ function MainViewModel(data) {
 		};
 		
 		var genericctr = $("#genericRTchart").get(0).getContext("2d");
-		var myLine = new Chart(genericctr).Line( vm.lineChartData(), options );
+		console.log("holi")
+		var myLine = new Chart(genericctr).Line( self.lineChartData(), options );
+		console.log(myLine)
+
 	}
 	
 }
 
 var vm = new MainViewModel();
-ko.applyBindings(vm);
-vm.initLine();
+
+
+
+$('#modalTR').on('shown.bs.modal', function (event) {
+	ko.applyBindings(vm);
+	vm.initLine();
+})
+
+$('#modalTR').on('hide.bs.modal', function (event) {
+ 	vm.stopTR();
+})

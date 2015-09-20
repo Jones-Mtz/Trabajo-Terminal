@@ -4,7 +4,7 @@ function MainViewModel(data) {
 	// var socket = io.connect('http://localhost:8070');
 	/*Connection witn the arduino*/
 	// var device = io('http://127.0.0.1:3000/api/robots/chappie/devices/asensor');
-	var robot = io('http://127.0.0.1:3000/api/robots/chappie');
+	var robot = io('http://189.225.236.83:3000/api/robots/chappie');
 
 	
 	self.lineChartData = ko.observable({
