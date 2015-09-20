@@ -58,12 +58,13 @@ function MainViewModel(data) {
 }
 
 var vm = new MainViewModel();
+ko.applyBindings(vm);
 
 
 
 $('#modalTR').on('shown.bs.modal', function (event) {
-	ko.applyBindings(vm);
 	vm.initLine();
+	vm.initTR();
 })
 
 $('#modalTR').on('hide.bs.modal', function (event) {
