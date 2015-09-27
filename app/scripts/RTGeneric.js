@@ -2,7 +2,7 @@ console.log('Real Time');
 var vm;
 function MainViewModel(data) {
 	var self = this;
-	var robot = io('http://189.225.236.83:3000/api/robots/chappie');
+	var robot = io('http://127.0.0.1:3000/api/robots/chappie');
 	var intervalo;
 	self.lineChartData = ko.observable({
 		labels : ["","","","Gen","","","ºC", ""],
@@ -19,9 +19,9 @@ function MainViewModel(data) {
 
 	self.initTR = function(){
 		self.invarvalo = setInterval(function() {
-			console.log("teoircamenre un tr")
+			// console.log("teoircamenre un tr")
 	        robot.emit('checkGeneric');
-	    }, 100);
+	    }, 50);
 	};
 
 	self.stopTR = function(){
@@ -35,8 +35,7 @@ function MainViewModel(data) {
 		console.log(generic);
 		self.lineChartData().datasets[0].data.shift();
 		self.lineChartData().datasets[0].data.push(generic);
-		
-		// self.initLine();
+		self.initLine();
 	});
 	
 	self.initLine = function() {
